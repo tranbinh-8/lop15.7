@@ -142,3 +142,36 @@ header {
 .child:hover .label {
     display: block;
 } */
+/* ==========================================================================
+   Query #1: Tablet View (Kích hoạt từ 772px trở lên)
+   ========================================================================== */
+@media screen and (min-width: 772px) {
+    /* 1a. Thay đổi kích thước các thẻ div và hình ảnh */
+    div {
+        width: 45vw; /* 45% of viewport width */
+    }
+
+    img {
+        max-height: 30vh; /* max 30% of viewport height */
+        width: auto;      /* Giữ tỉ lệ ảnh không bị bóp méo */
+    }
+
+    /* 1b. Để các div nằm cạnh nhau thay vì xếp dọc (vì chiều rộng lúc này chỉ còn 45%) */
+    /* Bạn có thể dùng flexbox hoặc float tùy thuộc vào cấu trúc container chứa div */
+    .container, main, body { 
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px; /* Tạo khoảng cách nhỏ giữa các div */
+    }
+}
+
+/* ==========================================================================
+   Query #2: Large Screen View (Kích hoạt từ 998px trở lên)
+   ========================================================================== */
+@media screen and (min-width: 998px) {
+    /* 2a. Thay đổi kích thước các thẻ div thành 30vw */
+    div {
+        width: 30vw; /* 30% of viewport width */
+    }
+}
