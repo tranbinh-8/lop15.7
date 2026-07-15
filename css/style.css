@@ -1,177 +1,86 @@
-
+/* ==========================================================================
+   1. Mặc định cho Mobile View (Màn hình nhỏ dưới 772px)
+   ========================================================================== */
 body {
     background-color: #dedede;
+    margin: 0;
+    padding: 10px;
 }
 
 h1 {
     text-align: center;
-    font-family:Arial, sans-serif;
+    font-family: Arial, sans-serif;
     font-size: 32px;
 }
 
 a {
     color: #000;
     text-decoration: none;
-    font-family:Arial, sans-serif;
+    font-family: Arial, sans-serif;
 }
 
 p {
    font-size: 25px;
-   font-family:Arial, sans-serif;
+   font-family: Arial, sans-serif;
+   text-align: center;
 }
 
-img{
-  width:100%;
-}
-
-
-p{
-  text-align:center;
-}
-
-div img{
-    width:150px;
-    height: 150px;
-    display:block;
-    margin:auto;
-}
-
-div{
-  display: inline-block;
-  width: 24%;
-  margin: 5px;
-  padding: 2px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* 
-main {
-    border: 5px #000 solid;
-    margin: 10px;
-}
- */
-/* 
-
-.container {
-    display: grid;
-    grid-template-columns: 1fr;
-    justify-items: center;
-}
- */
-/* img{
-    width: 200px;
-    height: 200px;
-    padding: 5px;
-} */
-
-/* .child {
-    position: relative;
-    display: inline-block;
-    border: 5px black solid;
-    margin: 5px;
-    border-radius: 5px;
-} */
-
-/* 
-
-.label {
-    display: none;
-    position: absolute;
-    top: 40%;
-    left: 40%;
-} */
-/* 
-.button {
-    display: inline-block;
-    border: 2px solid #000;
-    padding: 5px;
-    border-radius: 25px;
-}
- */
-/* 
-.button:hover {
-    background-color:#fff;
-} */
-
-/* 
-footer {
+/* Container bọc ngoài để quản lý layout bằng Flexbox */
+main, .container {
     display: flex;
-    justify-content: center;
-} */
+    flex-direction: column; /* Trên mobile: xếp chồng hàng dọc (1 cột) */
+    align-items: center;
+    gap: 15px;
+}
 
-/* 
-header {
-    border-radius: 5px;
-    border: 5px #000 solid;
-    margin: 10px;
-} */
+/* Mặc định cho thẻ div trên Mobile */
+div {
+    width: 90%; /* Chiếm hầu hết màn hình trên mobile */
+    margin: 5px;
+    padding: 10px;
+    box-sizing: border-box; 
+}
 
-/* 
-.label {
-    display: none;
-    position: absolute;
-    top: 40%;
-    left: 40%;
-} */
-/* 
-.child:hover .label {
+/* Ảnh mặc định tự co giãn theo div */
+div img {
+    width: 100%;
+    height: auto;
     display: block;
-} */
+    margin: auto;
+}
+
+
 /* ==========================================================================
-   Query #1: Tablet View (Kích hoạt từ 772px trở lên)
+   2. Query #1: Tablet View (Kích hoạt từ 772px trở lên)
    ========================================================================== */
 @media screen and (min-width: 772px) {
-    /* 1a. Thay đổi kích thước các thẻ div và hình ảnh */
-    div {
-        width: 45vw; /* 45% of viewport width */
-    }
-
-    img {
-        max-height: 30vh; /* max 30% of viewport height */
-        width: auto;      /* Giữ tỉ lệ ảnh không bị bóp méo */
-    }
-
-    /* 1b. Để các div nằm cạnh nhau thay vì xếp dọc (vì chiều rộng lúc này chỉ còn 45%) */
-    /* Bạn có thể dùng flexbox hoặc float tùy thuộc vào cấu trúc container chứa div */
-    .container, main, body { 
-        display: flex;
+    /* Đổi hướng flex sang hàng ngang để các div nằm cạnh nhau */
+    main, .container {
+        flex-direction: row; 
         flex-wrap: wrap;
         justify-content: center;
-        gap: 20px; /* Tạo khoảng cách nhỏ giữa các div */
+        gap: 20px;
+    }
+
+    /* Đổi chiều rộng div thành 45% viewport width theo yêu cầu 1a */
+    div {
+        width: 45vw; 
+    }
+
+    /* Sửa ảnh: Không quá 30% viewport height và ghi đè kích thước cũ bằng selector tương đương */
+    div img {
+        max-height: 30vh; 
+        width: auto;      
     }
 }
 
+
 /* ==========================================================================
-   Query #2: Large Screen View (Kích hoạt từ 998px trở lên)
+   3. Query #2: Large Screen View (Kích hoạt từ 998px trở lên)
    ========================================================================== */
 @media screen and (min-width: 998px) {
-    /* 2a. Thay đổi kích thước các thẻ div thành 30vw */
+    /* Thay đổi kích thước các thẻ div thành 30vw theo yêu cầu 2a */
     div {
-        width: 30vw; /* 30% of viewport width */
+        width: 30vw; 
     }
 }
