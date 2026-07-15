@@ -1,40 +1,90 @@
 /* ==========================================================================
-   1. Mặc định cho Mobile View (Màn hình nhỏ dưới 772px)
+   1. Mặc định cho Mobile View (Dưới 772px) - Các div xếp chồng hàng dọc
    ========================================================================== */
 body {
     background-color: #dedede;
+    font-family: Arial, sans-serif;
     margin: 0;
-    padding: 10px;
+    padding: 20px;
 }
 
 h1 {
     text-align: center;
-    font-family: Arial, sans-serif;
     font-size: 32px;
+}
+
+p {
+   font-size: 20px;
+   text-align: center;
 }
 
 a {
     color: #000;
     text-decoration: none;
-    font-family: Arial, sans-serif;
+    display: block;
+    text-align: center;
+    margin-top: 20px;
 }
 
-p {
-   font-size: 25px;
-   font-family: Arial, sans-serif;
-   text-align: center;
-}
-
-/* Container bọc ngoài để quản lý layout bằng Flexbox */
-main, .container {
+/* Container chứa các khối màu */
+main {
     display: flex;
-    flex-direction: column; /* Trên mobile: xếp chồng hàng dọc (1 cột) */
+    flex-direction: column; /* Xếp dọc 1 cột trên mobile */
     align-items: center;
-    gap: 15px;
+    gap: 20px;
 }
 
-/* Mặc định cho thẻ div trên Mobile */
-div {
+/* Các ô màu mặc định trên Mobile */
+.color-box {
+    width: 90%; 
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Ảnh tự co giãn vừa vặn bên trong ô màu */
+.color-box img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+
+/* ==========================================================================
+   2. Query #1: Tablet View (Từ 772px trở lên) - Dàn hàng ngang 2 cột
+   ========================================================================== */
+@media screen and (min-width: 772px) {
+    main {
+        flex-direction: row; /* Đổi hướng để các div nằm cạnh nhau */
+        flex-wrap: wrap;     /* Tự động xuống dòng khi hết chỗ */
+        justify-content: center;
+    }
+
+    /* Yêu cầu 1a: div chiếm 45% chiều rộng màn hình */
+    .color-box {
+        width: 45vw; 
+    }
+
+    /* Yêu cầu 1a: ảnh có chiều cao tối đa 30% chiều cao màn hình */
+    .color-box img {
+        max-height: 30vh; 
+        width: auto;       /* Giữ nguyên tỉ lệ hình ảnh */
+    }
+}
+
+
+/* ==========================================================================
+   3. Query #2: Large Screen View (Từ 998px trở lên) - Dàn hàng ngang 3 cột
+   ========================================================================== */
+@media screen and (min-width: 998px) {
+    /* Yêu cầu 2a: đổi kích thước các div thành 30% chiều rộng màn hình */
+    .color-box {
+        width: 30vw; 
+    }
+}div {
     width: 90%; /* Chiếm hầu hết màn hình trên mobile */
     margin: 5px;
     padding: 10px;
